@@ -1,4 +1,4 @@
-# veebileheprojekt
+# Veebileheprojekt
 Veebilehe projekt Sissejuhatus erialasse aine raames
 
 Keyboard Codex
