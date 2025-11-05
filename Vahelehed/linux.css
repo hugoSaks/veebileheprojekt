@@ -106,7 +106,7 @@ body {
     background-color: #f0f0f0; 
 }
 
-.Valikud p {
+.Valikud a {
     margin: 0 20px; 
     padding: 5px 25px 15px 25px; 
     border-bottom: 3px solid black; 
