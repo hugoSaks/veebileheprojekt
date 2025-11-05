@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f0f0f0;
+}
+
+.pais {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #9d9292;
+}
+
+.pais-sisu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+}
+
+.tiitli_konteiner {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.tiitli_pilt {
+    height: 40px;
+    width: auto;
+}
+
+.otsingu_konteiner {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    border-radius: 25px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    flex-basis: 80px;
+    justify-content: flex-start;
+    transition: all 0.2s ease-in-out;
+}
+
+.otsingu_konteiner:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    border-color: #c9c9c9;
+}
+
+.otsingu_ikoon {
+    color: #888;
+    margin-right: 10px;
+    font-size: 1.1em;
+    transition: color 0.2s ease-in-out;
+}
+
+.otsingu_sisend {
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: 1em;
+    width: 100%;
+    color: #333;
+    background-color: transparent;
+    font-family: Arial, sans-serif;
+
+    &::placeholder {
+        color: #b0b0b0;
+        font-style: italic;
+    }
+}
+
+.otsingu_konteiner:focus-within {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.lemmikute_konteiner {
+    display: flex;
+    align-items: center;
+    flex-basis: 80px;
+    justify-content: flex-end;
+}
+
+.lemmikute_ikoon {
+    font-size: 2em;
+    color: #000000;
+    cursor: pointer;
+}
+
+.lemmikute_ikoon:hover {
+    opacity: 0.6;
+}
+
+.Valikud {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* Muudetud */
+    padding: 50px 20px;
+    /* Suurendatud polsterdust */
+    background-color: #f0f0f0;
+}
+
+/* Stiilid uutele suurtele nuppudele */
+.valiku-nupp {
+    padding: 40px 60px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #5a5a5a;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.valiku-nupp:hover {
+    background-color: #007bff;
+    transform: translateY(-5px);
+}
+
+/* Peidab elemendi */
+.peidetud {
+    display: none !important;
+}
+
+.krediidid {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.krediidid hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 0 auto 15px auto;
+    width: 80%;
+}
+
+/* Stiilid dünaamiliselt loodud otsingutulemustele */
+.shortcuts-konteiner {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.shortcut-keys kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 14px;
+}

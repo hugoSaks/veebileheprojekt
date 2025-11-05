@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f0f0f0;
+}
+
+.pais {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%; 
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;     
+    box-sizing: border-box;
+    border-bottom: 1px solid #9d9292;
+}
+
+.pais-sisu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px; 
+}
+
+.tiitli_konteiner {
+    text-align: center;
+    flex-grow: 1; 
+}
+
+.tiitli_pilt {
+    height: 40px; 
+    width: auto;
+}
+
+.otsingu_konteiner {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7; 
+    border-radius: 25px; 
+    padding: 6px 12px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); 
+    border: 1px solid #e0e0e0; 
+    flex-basis: 80px; 
+    justify-content: flex-start;
+    transition: all 0.2s ease-in-out; 
+}
+
+.otsingu_konteiner:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12); 
+    border-color: #c9c9c9; 
+}
+
+.otsingu_ikoon {
+    color: #888; 
+    margin-right: 10px; 
+    font-size: 1.1em; 
+    transition: color 0.2s ease-in-out;
+}
+
+.otsingu_sisend {
+    border: none;
+    outline: none; 
+    padding: 0;
+    font-size: 1em;
+    width: 100%; 
+    color: #333; 
+    background-color: transparent;
+    font-family: Arial, sans-serif; 
+    &::placeholder {
+        color: #b0b0b0; 
+        font-style: italic;
+    }
+}
+
+.otsingu_konteiner:focus-within {
+    border-color: #007bff; 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.lemmikute_konteiner {
+    display: flex;
+    align-items: center;
+    flex-basis: 80px; 
+    justify-content: flex-end;
+}
+
+.lemmikute_ikoon {
+    font-size: 2em; 
+    color: #000000;
+    cursor: pointer;
+}
+
+.lemmikute_ikoon:hover {
+    opacity: 0.6;
+}
+
+.Valikud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 10px 0; 
+    position: relative; 
+    z-index: 1; 
+    background-color: #f0f0f0; 
+}
+
+.Valikud a {
+    margin: 0 20px; 
+    padding: 5px 25px 15px 25px; 
+    border-bottom: 3px solid black; 
+    border-bottom-left-radius: 20px 20px; 
+    border-bottom-right-radius: 20px 20px;
+    background-color: #f0f0f0; 
+    position: relative; 
+    cursor: pointer; 
+    font-weight: bold; 
+    color: #333; 
+    white-space: nowrap; 
+    z-index: 2; 
+}
+
+.Valikud p:hover {
+    color: #007bff; 
+    border-bottom-color: #007bff;
+}
+
+.krediidid {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.krediidid hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 0 auto 15px auto;
+    width: 80%;
+}
