@@ -1,8 +1,5 @@
 # Veebileheprojekt
 Veebilehe projekt Sissejuhatus erialasse aine raames
-<<<<<<< HEAD
-aaaaaaaaaaaaaaaaaaaaaaa
-=======
 
 Keyboard Codex
 
@@ -31,4 +28,3 @@ Selle projekti on loonud:
 Mio
 Hugo
 Karl
->>>>>>> d11d216f48d438cbe52debb15ef80c479f06d26e
