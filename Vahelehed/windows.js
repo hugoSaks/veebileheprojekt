@@ -1,5 +1,3 @@
-// Legend: Win = Windows key
-// Vorming: { os: 'Windows', description: '...', keys: ['Key1', 'Key2', ...] }
 
 const KõigeOlulisemad = [
   { os: 'Windows', description: 'Kuva töölaud / tagasi', keys: ['Win', 'D'] },
@@ -112,5 +110,3 @@ const TerminalJaArendus = [
   { os: 'Windows', description: 'Sulge terminali vahekaart', keys: ['Ctrl', 'Shift', 'W'] },
 ];
 
-// Ekspordi vajadusel:
-// export { KõigeOlulisemad, Dokumendid, FileExplorer, Veebibrauser, AknadJaTöölauad, EkraanipildidJaSalvestus, SüsteemJaKiirseaded, TootlikkusBoonused, TerminalJaArendus };

@@ -174,7 +174,6 @@ function renderShortcuts(arr, selector) {
     });
 }
 
-// Kui skript on laaditud enne DOM-i, kasuta DOMContentLoaded:
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         renderShortcuts(macShortcuts, '#shortcuts');
