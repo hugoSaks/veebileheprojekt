@@ -20,6 +20,7 @@ Kiire otsing: Leia täpselt vajalik käsklus ilma oma koodikirjutamise voogu rik
 Lihtne kasutajaliides: Puhas ja häirevaba disain, mis annab sulle vajaliku info kätte ja laseb sul koodi juurde tagasi pöörduda.
 
 Tehnoloogiad:
+JS
 HTML5
 CSS3
 Font Awesome
