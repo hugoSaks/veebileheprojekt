@@ -1,0 +1,3 @@
+Meie veebileht on mõeldud IT tudengitele. Sealt leiab erinevaid klahvikombinatsioone, mis on jaotatud teemade alla. Saad lisada lemmikuks klahvikombinatsioonid, 
+mida tahad endale pärastiseks meelde jätta. Samuti on võimalik ka otsida definitsiooni järgi klahvikombinatsioone. 
+Veebilehel on jagatud klahvikombinatsioonid vastavalt operatsioonisüsteemile ehk Windows, MacOS ja Linux.
