@@ -1,7 +1,7 @@
 # Veebileheprojekt
 Veebilehe projekt Sissejuhatus erialasse aine raames
 
-Keyboard Codex
+Shortcut Codex
 
 Kiire viiteveeb klaviatuuri kiirklahvide jaoks, mis on loodud spetsiaalselt selleks, et aidata IT- ja informaatikatudengeid kiiremini koodi kirjutada, tõhusamalt siluda ja oma õppevahendeid meisterlikult kasutada.
 
