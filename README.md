@@ -1,12 +1,9 @@
-# Veebileheprojekt
-Veebilehe projekt Sissejuhatus erialasse aine raames
+# Shortcut Codex
+Veebilehe projekt nimega Shortcut Codex Sissejuhatus erialasse aine raames
 
-Shortcut Codex
+Shortcut Codex on kiire viiteveeb klaviatuuri kiirklahvide jaoks, mis on loodud spetsiaalselt selleks, et aidata IT- ja informaatikatudengeid kiiremini koodi kirjutada, tõhusamalt siluda ja oma õppevahendeid meisterlikult kasutada.
 
-Kiire viiteveeb klaviatuuri kiirklahvide jaoks, mis on loodud spetsiaalselt selleks, et aidata IT- ja informaatikatudengeid kiiremini koodi kirjutada, tõhusamalt siluda ja oma õppevahendeid meisterlikult kasutada.
-
-Sihtrühm
-
+## Sihtrühm
 See tööriist on loodud üliõpilastele ja kõigile, kes õpivad programmeerimist, tarkvaraarendust või IT-d ja soovivad oma töövoogu kiirendada.
 
 Funktsioonid
