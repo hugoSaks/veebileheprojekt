@@ -110,3 +110,86 @@ const TerminalJaArendus = [
   { os: 'Windows', description: 'Sulge terminali vahekaart', keys: ['Ctrl', 'Shift', 'W'] },
 ];
 
+function renderShortcuts(arr, selector) {
+    const container = document.querySelector(selector);
+    if (!container) return;
+    container.innerHTML = '';
+    arr.forEach(s => {
+        const li = document.createElement('li');
+        const keysSpan = document.createElement('span');
+        keysSpan.className = 'keys';
+        keysSpan.innerHTML = s.keys.map(k => `<kbd>${k}</kbd>`).join(' + ');
+        const descSpan = document.createElement('span');
+        descSpan.className = 'desc';
+        descSpan.textContent = ' — ' + s.description;
+        li.appendChild(keysSpan);
+        li.appendChild(descSpan);
+        container.appendChild(li);
+    });
+}
+
+// Lisa otsingu funktsioon
+function searchShortcuts(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    
+    document.querySelectorAll('.shortcut-list li').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    // Peida tühjad sektsioonid
+    document.querySelectorAll('section').forEach(section => {
+        const visibleItems = section.querySelectorAll('li[style=""]').length;
+        if (visibleItems === 0) {
+            section.style.display = 'none';
+        } else {
+            section.style.display = '';
+        }
+    });
+}
+
+// Oota kuni DOM on laetud
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Renderda kõik kategooriad
+        renderShortcuts(KõigeOlulisemad, '#olulised');
+        renderShortcuts(Dokumendid, '#dokumendid');
+        renderShortcuts(FileExplorer, '#explorer');
+        renderShortcuts(Veebibrauser, '#brauser');
+        renderShortcuts(AknadJaTöölauad, '#aknad');
+        renderShortcuts(EkraanipildidJaSalvestus, '#ekraan');
+        renderShortcuts(SüsteemJaKiirseaded, '#system');
+        renderShortcuts(TootlikkusBoonused, '#tootlikkus');
+        renderShortcuts(TerminalJaArendus, '#terminal');
+
+        // Lisa otsingu kuulaja
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                searchShortcuts(e.target.value);
+            });
+        }
+    });
+} else {
+    // Kui DOM on juba laetud, renderda kohe
+    renderShortcuts(KõigeOlulisemad, '#olulised');
+    renderShortcuts(Dokumendid, '#dokumendid');
+    renderShortcuts(FileExplorer, '#explorer');
+    renderShortcuts(Veebibrauser, '#brauser');
+    renderShortcuts(AknadJaTöölauad, '#aknad');
+    renderShortcuts(EkraanipildidJaSalvestus, '#ekraan');
+    renderShortcuts(SüsteemJaKiirseaded, '#system');
+    renderShortcuts(TootlikkusBoonused, '#tootlikkus');
+    renderShortcuts(TerminalJaArendus, '#terminal');
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchShortcuts(e.target.value);
+        });
+    }
+}
