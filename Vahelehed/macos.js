@@ -156,34 +156,54 @@ const finderShortcuts = [
     { os: 'MacOS', description: 'Loob lohistatud üksusest otsetee (alias)', keys: ['Cmd', 'Option', 'Drag'] }
 ];
 
+// SEE ON UUS FUNKTSIOON, MIS EHITAB KAARDID
 function renderShortcuts(arr, selector) {
     const container = document.querySelector(selector);
     if (!container) return;
-    container.innerHTML = '';
+    
+    container.innerHTML = ''; // Tühjendame konteineri
+    
     arr.forEach(s => {
-        const li = document.createElement('li');
-        const keysSpan = document.createElement('span');
-        keysSpan.className = 'keys';
-        keysSpan.innerHTML = s.keys.map(k => `<kbd>${k}</kbd>`).join(' + ');
+        // 1. Loome kaardi (li element)
+        const card = document.createElement('li');
+        card.className = 'shortcut-card';
+
+        // 2. Loome vasaku poole (klahvide ümbris)
+        const keyWrapper = document.createElement('div');
+        keyWrapper.className = 'key-wrapper';
+
+        // Lisame klahvid ümbrisesse
+        s.keys.forEach(k => {
+            const keyTag = document.createElement('kbd');
+            keyTag.textContent = k;
+            keyWrapper.appendChild(keyTag);
+        });
+
+        // 3. Loome parema poole (kirjeldus)
         const descSpan = document.createElement('span');
-        descSpan.className = 'desc';
-        descSpan.textContent = ' — ' + s.description;
-        li.appendChild(keysSpan);
-        li.appendChild(descSpan);
-        container.appendChild(li);
+        descSpan.className = 'card-description';
+        descSpan.textContent = s.description;
+
+        // 4. Paneme kõik kokku
+        card.appendChild(keyWrapper);
+        card.appendChild(descSpan);
+
+        // 5. Lisame kaardi lehele
+        container.appendChild(card);
     });
 }
 
+// Siin on uued selektorid (ID-d), mis vastavad sinu uuele HTML-ile
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         renderShortcuts(macShortcuts, '#shortcuts');
-        renderShortcuts(powerShortcuts, '.pwrbutton_komb');
+        renderShortcuts(powerShortcuts, '#power');       // UUS ID: #power
         renderShortcuts(textEditingShortcuts, '#text-editing');
         renderShortcuts(finderShortcuts, '#finder');
     });
 } else {
     renderShortcuts(macShortcuts, '#shortcuts');
-    renderShortcuts(powerShortcuts, '.pwrbutton_komb');
+    renderShortcuts(powerShortcuts, '#power');           // UUS ID: #power
     renderShortcuts(textEditingShortcuts, '#text-editing');
     renderShortcuts(finderShortcuts, '#finder');
 }

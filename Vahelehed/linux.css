@@ -1,19 +1,29 @@
 body {
     margin: 0;
     font-family: 'Times New Roman', Times, serif;
-    background-color: #f0f0f0;
+    
+    /* --- MUST-VALGE TAUST (Scrollides tumedamaks halliks) --- */
+    background: linear-gradient(to bottom, #ffffff 0%, #555555 100%);
+    
+    min-height: 100vh;
+    background-attachment: scroll;
 }
 
+/* --- PÄIS (Hall taust, must tekst) --- */
 .pais {
     display: flex;
     align-items: center;
     justify-content: center; 
     width: 100%; 
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    
+    /* Lihtne hall taust */
+    background-color: #e0e0e0;
+    color: #000000; /* Tekst mustaks */
+    
     padding: 15px 20px;     
     box-sizing: border-box;
-    border-bottom: 1px solid #9d9292;
+    border-bottom: 1px solid #999; /* Tumehall joon */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .pais-sisu {
@@ -32,31 +42,30 @@ body {
 .tiitli_pilt {
     height: 40px; 
     width: auto;
+    filter: none; 
 }
 
 .otsingu_konteiner {
     display: flex;
     align-items: center;
-    background-color: #f7f7f7; 
+    background-color: #ffffff; /* Valge kast */
     border-radius: 25px; 
     padding: 6px 12px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); 
-    border: 1px solid #e0e0e0; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ccc; 
     flex-basis: 80px; 
     justify-content: flex-start;
     transition: all 0.2s ease-in-out; 
 }
 
 .otsingu_konteiner:hover {
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12); 
-    border-color: #c9c9c9; 
+    border-color: #999; 
 }
 
 .otsingu_ikoon {
-    color: #888; 
+    color: #555; 
     margin-right: 10px; 
     font-size: 1.1em; 
-    transition: color 0.2s ease-in-out;
 }
 
 .otsingu_sisend {
@@ -68,15 +77,15 @@ body {
     color: #333; 
     background-color: transparent;
     font-family: Arial, sans-serif; 
-    &::placeholder {
-        color: #b0b0b0; 
-        font-style: italic;
-    }
+}
+
+.otsingu_sisend::placeholder {
+    color: #999; 
+    font-style: italic;
 }
 
 .otsingu_konteiner:focus-within {
-    border-color: #007bff; 
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: #000; /* Fookuses must äärejoon */
 }
 
 .lemmikute_konteiner {
@@ -88,8 +97,9 @@ body {
 
 .lemmikute_ikoon {
     font-size: 2em; 
-    color: #000000;
+    color: #000000; /* Ikoon mustaks */
     cursor: pointer;
+    text-shadow: none; /* Varjud maha */
 }
 
 .lemmikute_ikoon:hover {
@@ -103,107 +113,126 @@ body {
     padding: 0 0 10px 0; 
     position: relative; 
     z-index: 1; 
-    background-color: #f0f0f0; 
+    background-color: transparent; 
+    margin-top: 10px;
 }
 
 .Valikud a {
     margin: 0 20px; 
     padding: 5px 25px 15px 25px; 
-    border-bottom: 3px solid black; 
+    border-bottom: 3px solid #000; 
     border-bottom-left-radius: 20px 20px; 
     border-bottom-right-radius: 20px 20px;
-    background-color: #f0f0f0; 
+    background-color: #f5f5f5; 
     position: relative; 
     cursor: pointer; 
     font-weight: bold; 
-    color: #333; 
+    color: #000; 
     white-space: nowrap; 
     z-index: 2; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.Valikud p:hover {
-    color: #007bff; 
-    border-bottom-color: #007bff;
+/* PARANDUS: Siin oli 'p', aga peab olema 'a', et hover töötaks linkidel */
+.Valikud a:hover {
+    color: #555; 
+    border-bottom-color: #555;
 }
 
+/* --- JALUS (Hall taust, must tekst) --- */
 .krediidid {
     text-align: center;
-    padding: 20px;
-    color: #666;
+    padding: 30px 20px;
+    margin-top: 50px;
+    
+    color: #d6d6d6; /* Hele tekst tumeda tausta peale */
     font-size: 0.9em;
+    border-top: 1px solid #494949;
 }
 
 .krediidid hr {
     border: 0;
     height: 1px;
-    background: #ccc;
+    background: #494949;
     margin: 0 auto 15px auto;
     width: 80%;
 }
 
-/* See on kast (nimekiri), mis hoiab kõiki kaarte */
+/* Nimekirja grid */
 .shortcut-list {
-    display: grid;                  /* Teeb nimekirjast võrgustiku */
-    grid-template-columns: 1fr 1fr; /* Tekitab KAKS võrdset tulpa (1fr = 1 fraction) */
-    gap: 20px;                      /* Jätab kaartide vahele ja külgedele ruumi */
-    
-    max-width: 1000px;              /* MÄÄRAB PIIRANGU: Nimekiri ei lähe kunagi laiemaks kui 1000px */
-    margin: 0 auto 30px auto;       /* "0 auto" tsentreerib kogu nimekirja lehe keskele */
-    
-    list-style: none;               /* Eemaldab punktid (bullet points) */
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    max-width: 1000px; 
+    margin: 0 auto 30px auto; 
+    list-style: none; 
     padding: 0;
 }
 
-/* See on telefonide jaoks - kui ekraan on kitsas, paneb kaardid üksteise alla tagasi */
 @media (max-width: 768px) {
     .shortcut-list {
-        grid-template-columns: 1fr; /* Telefonis ainult 1 tulp */
+        grid-template-columns: 1fr; 
     }
 }
 
-/* 2. THE CARD (The White Box) */
+/* KAART */
 .shortcut-card {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     
-    display: flex;             
-    align-items: center;      
+    display: flex; 
+    align-items: center; 
     justify-content: space-between;
     
     padding: 15px 25px;
+    transition: transform 0.2s;
 }
 
-/* 3. THE GREY WRAPPER (Behind the keys) */
+.shortcut-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Klahvide ümbris */
 .key-wrapper {
-    background-color: #d3d3d3; /* The light grey pill background */
-    padding: 8px 15px;         /* Space around the keys */
-    border-radius: 10px;       /* Rounds the grey background */
-    display: flex;             /* Keeps keys in a row */
-    gap: 8px;                  /* Space between Ctrl and C */
+    background-color: #dcdcdc; 
+    padding: 8px 15px; 
+    border-radius: 10px; 
+    display: flex; 
+    gap: 8px; 
 }
 
-/* 4. THE KEYS (The actual buttons like "Ctrl") */
+/* Klahvid */
 .key-wrapper kbd {
-    background-color: #888;    /* Darker grey for the key itself */
-    color: white;              /* White text */
+    background-color: #333; /* Tumehall klahv */
+    color: white; 
     padding: 5px 10px;
-    border-radius: 6px;        /* Rounded corners for keys */
+    border-radius: 6px; 
     font-family: monospace;
     font-weight: bold;
     font-size: 1.1em;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.2); /* Tiny shadow under the key */
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2); 
 }
 
-/* 5. THE DESCRIPTION (The Text) */
+/* Kirjeldus */
 .card-description {
     font-size: 1.1em;
-    color: #333;
+    color: #000;
     font-weight: 500;
-    text-align: right;         /* Aligns text to the right side */
+    text-align: right; 
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px; 
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000;
+    text-shadow: none; /* Vari maha */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: #000;
+    text-shadow: none; /* Vari maha */
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,35 +12,38 @@
 <body>
     <div class="pais">
         <div class="pais-sisu">
-            <div class="lemmikute_konteiner">
-                <i class="fa-regular fa-heart lemmikute_ikoon"></i>
-            </div>
-
-            <div class="tiitli_konteiner">
-                <img src="https://see.fontimg.com/api/rf5/4n2nB/Y2I5MDBjNGIwNmQ2NDQ1MWI4MTBiZWI2NzFjMmFmZTQudHRm/U2hvcnRjdXQgQ29kZXg/breaker-slash.png?r=fs&h=114&w=1750&fg=000000&bg=FFFFFF&tb=1&s=65"
-                    alt="Shortcut Codex" class="tiitli_pilt">
-            </div>
-
-            <div class="otsingu_konteiner">
-                <i class="fas fa-search otsingu_ikoon"></i>
-                <input type="search" placeholder="Otsi..." class="otsingu_sisend">
-            </div>
         </div>
     </div>
 
-    <div class="Valikud">
-        <a href="/Vahelehed/macos.html" class="valiku-nupp">MacOS</a>
-        <a href="/Vahelehed/windows.html" class="valiku-nupp">Windows</a>
-        <a href="/Vahelehed/linux.html" class="valiku-nupp">Linux</a>
+    <div class="kangelas-ala">
+        <img src="https://see.fontimg.com/api/rf5/4n2nB/Y2I5MDBjNGIwNmQ2NDQ1MWI4MTBiZWI2NzFjMmFmZTQudHRm/U2hvcnRjdXQgQ29kZXg/breaker-slash.png?r=fs&h=114&w=1750&fg=000000&bg=FFFFFF&tb=1&s=65" 
+             alt="Shortcut Codex" class="tiitli_pilt">
+        
+        <div class="suur-otsing-konteiner">
+            <i class="fas fa-search otsingu-ikoon-suur"></i>
+            <input type="search" placeholder="Otsi otseteed (nt 'kopeeri' või 'terminal')..." class="suur-otsing-sisend otsingu_sisend">
+        </div>
+
+        <div class="favoriidid-konteiner">
+            <a href="#" class="favoriidid-link" title="Minu Lemmikud">
+                <i class="fa-regular fa-heart"></i> Lemmikud
+            </a>
+        </div>
     </div>
 
     <div id="shortcuts-container" class="shortcuts-konteiner peidetud"></div>
 
     <div class="krediidid">
         <hr>
+        <div class="Valikud">
+            <a href="/Vahelehed/macos.html" class="valiku-nupp">MacOS</a>
+            <a href="/Vahelehed/windows.html" class="valiku-nupp">Windows</a>
+            <a href="/Vahelehed/linux.html" class="valiku-nupp">Linux</a>
+        </div>
         <p>Mio, Hugo ja Karl</p>
     </div>
 
-    <script src="linux.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

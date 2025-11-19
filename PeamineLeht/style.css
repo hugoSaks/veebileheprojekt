@@ -1,174 +1,276 @@
+/* =========================================
+   1. ÜLDINE
+   ========================================= */
 body {
     margin: 0;
-    font-family: 'Times New Roman', Times, serif;
-    background-color: #f0f0f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    /* --- MUST-VALGE TAUST (Scrollides tumedamaks halliks) --- */
+    background: linear-gradient(to bottom, #ffffff 0%, #555555 100%);
+    
+    min-height: 100vh;
+    background-attachment: scroll; /* Gradient kerib koos lehega */
+    
+    color: #333;
+    display: flex;
+    flex-direction: column;
 }
 
+/* =========================================
+   2. PÄIS (Tühi, et gradient paistaks läbi)
+   ========================================= */
 .pais {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 15px 20px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #9d9292;
+    padding: 10px 20px;
+    background-color: transparent; 
 }
 
 .pais-sisu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px; 
+    height: 30px; 
 }
 
-.tiitli_konteiner {
-    text-align: center;
-    flex-grow: 1;
+/* =========================================
+   3. KESKOSA (Logo, Suur Otsing ja Lemmikud)
+   ========================================= */
+.kangelas-ala {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh; 
+    margin-bottom: 40px;
+    padding: 0 20px;
+    flex-grow: 1; 
 }
 
-.tiitli_pilt {
-    height: 40px;
-    width: auto;
+/* Logo nüüd keskel ja suurem */
+.tiitli_pilt { 
+    max-width: 100%;
+    height: auto;
+    width: 400px; 
+    margin-bottom: 30px;
 }
 
-.otsingu_konteiner {
+/* GOOGLE'I STIILIS OTSINGURIBA */
+.suur-otsing-konteiner {
     display: flex;
     align-items: center;
-    background-color: #f7f7f7;
-    border-radius: 25px;
-    padding: 6px 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e0e0e0;
-    flex-basis: 80px;
-    justify-content: flex-start;
-    transition: all 0.2s ease-in-out;
+    width: 100%;
+    max-width: 584px; 
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.7); /* Heledam piirjoon */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Kergem vari */
+    border-radius: 24px; 
+    padding: 12px 20px;
+    margin-bottom: 20px; 
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.otsingu_konteiner:hover {
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-    border-color: #c9c9c9;
+/* Hover effekt - vari tekib */
+.suur-otsing-konteiner:hover,
+.suur-otsing-konteiner:focus-within {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Natuke tumedam vari hoveril */
+    border-color: rgba(255,255,255,0.9);
 }
 
-.otsingu_ikoon {
-    color: #888;
-    margin-right: 10px;
-    font-size: 1.1em;
-    transition: color 0.2s ease-in-out;
+.otsingu-ikoon-suur {
+    color: #9aa0a6;
+    font-size: 1.2em;
+    margin-right: 15px;
 }
 
-.otsingu_sisend {
+.suur-otsing-sisend {
+    flex-grow: 1;
     border: none;
     outline: none;
-    padding: 0;
-    font-size: 1em;
-    width: 100%;
-    color: #333;
-    background-color: transparent;
-    font-family: Arial, sans-serif;
-
-    &::placeholder {
-        color: #b0b0b0;
-        font-style: italic;
-    }
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #202124;
+    background-color: transparent; /* Läbipaistev taust */
 }
 
-.otsingu_konteiner:focus-within {
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+/* =========================================
+   4. LEMMIKUD (Läbipaistev nupp otsingu all)
+   ========================================= */
+.favoriidid-konteiner {
+    text-align: center; 
+    margin-bottom: 30px; 
 }
 
-.lemmikute_konteiner {
-    display: flex;
+.favoriidid-link {
+    display: inline-flex; 
     align-items: center;
-    flex-basis: 80px;
-    justify-content: flex-end;
-}
-
-.lemmikute_ikoon {
-    font-size: 2em;
-    color: #000000;
-    cursor: pointer;
-}
-
-.lemmikute_ikoon:hover {
-    opacity: 0.6;
-}
-
-.Valikud {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    /* Muudetud */
-    padding: 50px 20px;
-    /* Suurendatud polsterdust */
-    background-color: #f0f0f0;
-}
-
-/* Stiilid uutele suurtele nuppudele */
-.valiku-nupp {
-    padding: 40px 60px;
-    font-size: 2em;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #5a5a5a;
-    border-radius: 10px;
+    gap: 8px; 
+    
+    background-color: transparent; /* Läbipaistev taust */
+    border: 1px solid #ffffff; /* Valge piirjoon */
+    color: #ffffff; /* Valge tekst */
+    
+    border-radius: 4px;
+    font-family: arial,sans-serif;
+    font-size: 0.9em;
+    padding: 8px 16px;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 36px;
+    line-height: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Väike vari annab sügavust */
 }
 
-.valiku-nupp:hover {
-    background-color: #007bff;
-    transform: translateY(-5px);
+.favoriidid-link:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,0.1); /* Väga õrn valge taust hoveril */
+    border-color: #ffffff;
+    color: #ffffff;
 }
 
-/* Peidab elemendi */
+.favoriidid-link i {
+    font-size: 1.1em; 
+    color: #ffffff; /* Valge ikoon */
+}
+
+.favoriidid-link:hover i {
+    color: #ff6b6b; /* Punane süda hoveril */
+}
+
+
+/* =========================================
+   5. OTSINGUTULEMUSED JA JALUS
+   ========================================= */
 .peidetud {
-    display: none !important;
+    display: none;
 }
 
+.shortcuts-konteiner {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Krediidid lehe all (sisaldab nüüd ka OS nuppe) */
 .krediidid {
+    margin-top: auto; 
     text-align: center;
     padding: 20px;
-    color: #666;
+    color: #cccccc; /* Hele tekst tumedal taustal */
     font-size: 0.9em;
+    background-color: #666666; /* Tumehall jaluse taust */
+    border-top: 1px solid #444444;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex; /* Flexbox, et nupud ja tekst oleksid kenasti paigutatud */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .krediidid hr {
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    margin: 0 auto 15px auto;
-    width: 80%;
+    display: none; 
 }
 
-/* Stiilid dünaamiliselt loodud otsingutulemustele */
-.shortcuts-konteiner {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+/* OS nupud, nüüd krediitide sees ja läbipaistvad */
+.Valikud {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px; /* Vahe nuppude ja teksti vahel */
+    margin-top: 10px; /* Väike vahe krediitide ülemisest äärest */
 }
 
-.shortcut-item {
+.valiku-nupp {
+    background-color: transparent; /* Läbipaistev taust */
+    border: 1px solid #ffffff; /* Valge piirjoon */
+    border-radius: 4px;
+    color: #ffffff; /* Valge tekst */
+    font-family: arial,sans-serif;
+    font-size: 14px;
+    margin: 0; 
+    padding: 0 16px;
+    line-height: 36px; 
+    height: 36px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Väike vari annab sügavust */
+}
+
+.valiku-nupp:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,0.1); /* Väga õrn valge taust hoveril */
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Kaardistiilid, kui neid siin vaja on (otsingutulemuste kuvamiseks) */
+.shortcut-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 15px 25px;
+    border: 1px solid #dfe1e5;
+    border-radius: 8px;
     margin-bottom: 10px;
-    background-color: #f9f9f9;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.key-wrapper {
+    background-color: #f1f3f4;
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    gap: 5px;
+}
+.key-wrapper kbd {
+    background-color: #e8eaed;
+    color: #3c4043;
+    padding: 3px 7px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 0.9em;
+    box-shadow: none;
+}
+.card-description {
+    color: #5f6368;
+    font-size: 1em;
+    text-align: right;
 }
 
-.shortcut-keys kbd {
-    background-color: #eee;
-    border-radius: 3px;
-    border: 1px solid #b4b4b4;
-    padding: 2px 6px;
-    font-family: monospace;
-    font-size: 14px;
+/* Responsive disain telefonidele */
+@media (max-width: 600px) {
+    .tiitli_pilt {
+        width: 280px;
+    }
+    .kangelas-ala {
+        margin-top: 5vh;
+    }
+    .suur-otsing-konteiner {
+        padding: 10px 15px;
+        border-radius: 20px;
+    }
+    .otsingu-ikoon-suur {
+        font-size: 1em;
+        margin-right: 10px;
+    }
+    .suur-otsing-sisend {
+        font-size: 1em;
+    }
+    .favoriidid-link,
+    .valiku-nupp {
+        font-size: 0.8em;
+        padding: 6px 12px;
+        height: auto; 
+        line-height: normal;
+    }
+    .Valikud {
+        flex-direction: column; /* Nupud üksteise alla väikestel ekraanidel */
+    }
 }

@@ -1,4 +1,3 @@
-
 const KõigeOlulisemad = [
   { os: 'Windows', description: 'Kuva töölaud / tagasi', keys: ['Win', 'D'] },
   { os: 'Windows', description: 'Ava File Explorer', keys: ['Win', 'E'] },
@@ -110,32 +109,51 @@ const TerminalJaArendus = [
   { os: 'Windows', description: 'Sulge terminali vahekaart', keys: ['Ctrl', 'Shift', 'W'] },
 ];
 
+// SEE ON UUS FUNKTSIOON, MIS EHITAB KAARDID
 function renderShortcuts(arr, selector) {
     const container = document.querySelector(selector);
     if (!container) return;
-    container.innerHTML = '';
+    
+    container.innerHTML = ''; // Tühjendame konteineri
+    
     arr.forEach(s => {
-        const li = document.createElement('li');
-        const keysSpan = document.createElement('span');
-        keysSpan.className = 'keys';
-        keysSpan.innerHTML = s.keys.map(k => `<kbd>${k}</kbd>`).join(' + ');
+        // 1. Loome kaardi (li element)
+        const card = document.createElement('li');
+        card.className = 'shortcut-card';
+
+        // 2. Loome vasaku poole (klahvide ümbris)
+        const keyWrapper = document.createElement('div');
+        keyWrapper.className = 'key-wrapper';
+
+        // Lisame klahvid ümbrisesse
+        s.keys.forEach(k => {
+            const keyTag = document.createElement('kbd');
+            keyTag.textContent = k;
+            keyWrapper.appendChild(keyTag);
+        });
+
+        // 3. Loome parema poole (kirjeldus)
         const descSpan = document.createElement('span');
-        descSpan.className = 'desc';
-        descSpan.textContent = ' — ' + s.description;
-        li.appendChild(keysSpan);
-        li.appendChild(descSpan);
-        container.appendChild(li);
+        descSpan.className = 'card-description';
+        descSpan.textContent = s.description;
+
+        // 4. Paneme kõik kokku
+        card.appendChild(keyWrapper);
+        card.appendChild(descSpan);
+
+        // 5. Lisame kaardi lehele
+        container.appendChild(card);
     });
 }
 
-// Lisa otsingu funktsioon
+// See funktsioon tegeleb otsinguga
 function searchShortcuts(searchTerm) {
     searchTerm = searchTerm.toLowerCase();
     
-    document.querySelectorAll('.shortcut-list li').forEach(item => {
+    document.querySelectorAll('.shortcut-card').forEach(item => {
         const text = item.textContent.toLowerCase();
         if (text.includes(searchTerm)) {
-            item.style.display = '';
+            item.style.display = 'flex'; // Uue disainiga kasutame 'flex', mitte 'block'
         } else {
             item.style.display = 'none';
         }
@@ -143,39 +161,33 @@ function searchShortcuts(searchTerm) {
 
     // Peida tühjad sektsioonid
     document.querySelectorAll('section').forEach(section => {
-        const visibleItems = section.querySelectorAll('li[style=""]').length;
-        if (visibleItems === 0) {
+        const list = section.querySelector('ul');
+        const visibleItems = list.querySelectorAll('li[style="display: flex;"]').length;
+        
+        // Kui otsinguterminit pole, näita kõiki sektsioone
+        if (searchTerm === '') {
+             section.style.display = 'block';
+             return;
+        }
+
+        // Muidu peida sektsioon, kui seal pole ühtegi vastet
+        if (visibleItems === 0 && list.children.length > 0) {
             section.style.display = 'none';
         } else {
-            section.style.display = '';
+            section.style.display = 'block';
         }
     });
 }
 
-// Oota kuni DOM on laetud
+// Käivitame koodi, kui leht on laetud
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        // Renderda kõik kategooriad
-        renderShortcuts(KõigeOlulisemad, '#olulised');
-        renderShortcuts(Dokumendid, '#dokumendid');
-        renderShortcuts(FileExplorer, '#explorer');
-        renderShortcuts(Veebibrauser, '#brauser');
-        renderShortcuts(AknadJaTöölauad, '#aknad');
-        renderShortcuts(EkraanipildidJaSalvestus, '#ekraan');
-        renderShortcuts(SüsteemJaKiirseaded, '#system');
-        renderShortcuts(TootlikkusBoonused, '#tootlikkus');
-        renderShortcuts(TerminalJaArendus, '#terminal');
-
-        // Lisa otsingu kuulaja
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                searchShortcuts(e.target.value);
-            });
-        }
-    });
+    document.addEventListener('DOMContentLoaded', init);
 } else {
-    // Kui DOM on juba laetud, renderda kohe
+    init();
+}
+
+function init() {
+    // Renderda kõik kategooriad
     renderShortcuts(KõigeOlulisemad, '#olulised');
     renderShortcuts(Dokumendid, '#dokumendid');
     renderShortcuts(FileExplorer, '#explorer');
@@ -186,6 +198,7 @@ if (document.readyState === 'loading') {
     renderShortcuts(TootlikkusBoonused, '#tootlikkus');
     renderShortcuts(TerminalJaArendus, '#terminal');
 
+    // Lisa otsingu funktsionaalsus
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
