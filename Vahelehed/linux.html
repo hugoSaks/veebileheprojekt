@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shortcut Codex</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link rel="stylesheet" href="linux.css">
+    <title>Shortcut Codex</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="stylee.css">
 </head>
 <body>
-    <div class = "pais">
+    <div class="pais">
         <div class="pais-sisu">
             <div class="lemmikute_konteiner">
                 <i class="fa-regular fa-heart lemmikute_ikoon"></i>
@@ -26,55 +26,36 @@
             </div>
         </div>
     </div>
-    <div class = "Valikud">
-        <a href="/Vahelehed/macos.html">MacOS</a>
-        <a href="/Vahelehed/windows.html">Windows</a>
-        <a href="/Vahelehed/linux.html">Linux</a>
+    
+    <div class="Valikud">
+        <a href="/Vahelehed/macos.html" class="valiku-nupp">MacOS</a>
+        <a href="/Vahelehed/windows.html" class="valiku-nupp">Windows</a>
+        <a href="/Vahelehed/linux.html" class="valiku-nupp">Linux</a>
     </div>
-    <div class = "tekst">
-        <p>
-            SEE ON LINUX SA LOLL
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </p>
+
+    <div class="tekst">
+        <h1>Linuxi klahvikombinatsioonid</h1>
+        
+        <section>
+            <h2>Terminal ja käsurida</h2>
+            <ul id="linux-terminal" class="shortcut-list"></ul>
+        </section>
+
+        <section>
+            <h2>Töölaud ja aknad</h2>
+            <ul id="linux-desktop" class="shortcut-list"></ul>
+        </section>
+
+        <section>
+            <h2>Veebibrauser</h2>
+            <ul id="linux-browser" class="shortcut-list"></ul>
+        </section>
     </div>
+
     <div class="krediidid">
         <hr>
         <p>Mio, Hugo ja Karl</p>
     </div>
+    <script src="linux.js"></script>
 </body>
 </html>

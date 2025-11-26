@@ -1,85 +1,104 @@
-const linuxShortcuts = [
-  { os: 'Linux', description: 'Avab uue terminali vahelehe.', keys: ['Ctrl', 'Shift', 'T'] },
-  { os: 'Linux', description: 'Sulgeb aktiivse vahelehe.', keys: ['Ctrl', 'Shift', 'W'] },
-  { os: 'Linux', description: 'Liigub järgmisele vahelehele.', keys: ['Ctrl', 'Tab'] },
-  { os: 'Linux', description: 'Liigub eelmisele vahelehele.', keys: ['Ctrl', 'Shift', 'Tab'] },
-  { os: 'Linux', description: 'Alternatiiv Ctrl+Tab-ile.', keys: ['Ctrl', 'PgUp/PgDn'] },
-  { os: 'Linux', description: 'Jagab akna pooleks. Väga kasulik!', keys: ['Alt', 'Shift', 'D'] },
-  { os: 'Linux', description: 'Liigub aktiivse jaotuse (pane) fookusega.', keys: ['Alt', 'Nooleklahv'] },
-  { os: 'Linux', description: 'Muudab aktiivse jaotuse suurust.', keys: ['Alt', 'Shift', 'Nooleklahv'] },
-  { os: 'Linux', description: 'Kopeerib valitud teksti.', keys: ['Ctrl', 'Shift', 'C'] },
-  { os: 'Linux', description: 'Kleebib teksti.', keys: ['Ctrl', 'Shift', 'V'] },
-  { os: 'Linux', description: 'Otsib terminali kerimise ajaloost teksti.', keys: ['Ctrl', 'Shift', 'F'] },
-  { os: 'Linux', description: 'Avab terminali seadete JSON-faili.', keys: ['Ctrl', ', (koma)'] },
-  { os: 'Linux', description: 'Muudab teksti suurust.', keys: ['Ctrl', 'Hiirekerimine'] },
-  { os: 'Linux', description: 'SIGINT. Sinu "paanikanupp".', keys: ['Ctrl', 'C'] },
-  { os: 'Linux', description: 'Otsib ajaloost tagurpidi. Trüki ssh ja see leiab su ssh kj@... käsu.', keys: ['Ctrl', 'R'] },
-  { os: 'Linux', description: 'SIGTSTP. Lükkab taustale. Saad tagasi tuua käsuga fg.', keys: ['Ctrl', 'Z'] },
-  { os: 'Linux', description: 'Sulgeb kesta (tühjal real) või kustutab tähe kursori all.', keys: ['Ctrl', 'D'] },
-  { os: 'Linux', description: 'Peatab kogu terminali väljundi (kui see kerib liiga kiiresti).', keys: ['Ctrl', 'S'] },
-  { os: 'Linux', description: 'Jätkab terminali tööd, kui see on Ctrl+S-iga peatatud.', keys: ['Ctrl', 'Q'] },
-  { os: 'Linux', description: 'Võtab ajaloost eelmise käsu.', keys: ['Nool Üles'] },
-  { os: 'Linux', description: 'Võtab ajaloost järgmise käsu.', keys: ['Nool Alla'] },
-  { os: 'Linux', description: 'Sama mis Nool Üles.', keys: ['Ctrl', 'P'] },
-  { os: 'Linux', description: 'Sama mis Nool Alla.', keys: ['Ctrl', 'N'] },
-  { os: 'Linux', description: 'sudo !! (kordab viimast käsku sudo-ga)', keys: ['!!'] },
-  { os: 'Linux', description: 'mkdir test -> cd !$ (cd-ib test kausta)', keys: ['!$'] },
-  { os: 'Linux', description: 'ls file1 file2 -> rm !* (kustutab file1 ja file2)', keys: ['!*'] },
-  { os: 'Linux', description: '!101 (kordab käsku numbriga 101 history nimekirjast)', keys: ['!N'] },
-  { os: 'Linux', description: '!-2 (kordab üleeelmist käsku)', keys: ['!-N'] },
-  { os: 'Linux', description: '!ssh (kordab viimast ssh käsku)', keys: ['!string'] },
-  { os: 'Linux', description: 'python test.y -> ^y^py (parandab test.py-ks)', keys: ['^vana^uus'] },
-  { os: 'Linux', description: 'Kõige olulisem! Täidab faili- ja käsunimed.', keys: ['Tab'] },
-  { os: 'Linux', description: 'Sama, mis käsk clear.', keys: ['Ctrl', 'L'] },
-  { os: 'Linux', description: 'Liigub kursori rea algusesse.', keys: ['Ctrl', 'A'] },
-  { os: 'Linux', description: 'Liigub kursori rea lõppu.', keys: ['Ctrl', 'E'] },
-  { os: 'Linux', description: 'Liigub ühe tähe võrra edasi (sama mis Nool Paremale).', keys: ['Ctrl', 'F'] },
-  { os: 'Linux', description: 'Liigub ühe tähe võrra tagasi (sama mis Nool Vasakule).', keys: ['Ctrl', 'B'] },
-  { os: 'Linux', description: 'Liigub ühe sõna võrra edasi.', keys: ['Alt', 'F'] },
-  { os: 'Linux', description: 'Liigub ühe sõna võrra tagasi.', keys: ['Alt', 'B'] },
-  { os: 'Linux', description: 'Hüppab rea alguse ja kursori praeguse asukoha vahel.', keys: ['Ctrl', 'X Ctrl', 'X'] },
-  { os: 'Linux', description: 'Kustutab kõik kursori asukohast rea algusesse.', keys: ['Ctrl', 'U'] },
-  { os: 'Linux', description: 'Kustutab kõik kursori asukohast rea lõpuni.', keys: ['Ctrl', 'K'] },
-  { os: 'Linux', description: 'Kustutab eelmise sõna.', keys: ['Ctrl', 'W'] },
-  { os: 'Linux', description: 'Kustutab sõna alates kursorist.', keys: ['Alt', 'D'] },
-  { os: 'Linux', description: 'Mõnikord sama mis Ctrl+W (sõltub terminalist).', keys: ['Alt', 'Backspace'] },
-  { os: 'Linux', description: 'Kleebib tagasi selle, mis sa Ctrl+U/K/W/Alt+D abil kustutasid.', keys: ['Ctrl', 'Y'] },
-  { os: 'Linux', description: 'Pärast Ctrl+Y, vahetab eelnevate kustutatud tekstide vahel.', keys: ['Alt', 'Y'] },
-  { os: 'Linux', description: 'Sama mis Backspace.', keys: ['Ctrl', 'H'] },
-  { os: 'Linux', description: 'Vahetab kaks viimast tähte omavahel. (nt pythno -> python).', keys: ['Ctrl', 'T'] },
-  { os: 'Linux', description: 'Vahetab kaks viimast sõna omavahel.', keys: ['Alt', 'T'] },
-  { os: 'Linux', description: 'Võtab eelmise käsu viimase argumendi. (Väga kasulik!)', keys: ['Alt', '.'] },
-  { os: 'Linux', description: '(Uppercase) Muudab sõna suurtähtedeks.', keys: ['Alt', 'U'] },
-  { os: 'Linux', description: '(Lowercase) Muudab sõna väiketähtedeks.', keys: ['Alt', 'L'] },
-  { os: 'Linux', description: '(Capitalize) Muudab sõna esitähe suureks.', keys: ['Alt', 'C'] },
-  { os: 'Linux', description: 'Lisab # rea algusesse ja vajutab Enter (salvestab käsu ajalukku).', keys: ['Alt', '#'] },
-  { os: 'Linux', description: 'Sisestab kõik Tab-i võimalikud vasted käsureale.', keys: ['Alt', '*'] },
-  { os: 'Linux', description: 'Kõige olulisem! Avab uue terminaliakna.', keys: ['Ctrl', 'Alt', 'T'] },
-  { os: 'Linux', description: 'Näitab kõiki avatud aknaid ja virtuaalseid töölaudu.', keys: ['Super (või Alt', 'F1)'] },
-  { os: 'Linux', description: 'Liigub avatud rakenduste vahel.', keys: ['Alt', 'Tab'] },
-  { os: 'Linux', description: 'Liigub kiirelt oma "koodi" ja "brauseri" töölaua vahel.', keys: ['Ctrl', 'Alt', 'Nooleklahv'] },
-  { os: 'Linux', description: 'Salvestab pildi Pictures kausta.', keys: ['PrtScn'] },
-  { os: 'Linux', description: 'Kõige olulisem! Lubab sul hiirega valida, millisest alast pilti teha.', keys: ['Shift', 'PrtScn'] },
-  { os: 'Linux', description: 'Kopeerib aktiivse akna pildi lõikelauale.', keys: ['Alt', 'PrtScn'] },
-  { os: 'Linux', description: 'Avab "Run" dialoogi, kuhu saad trükkida käske (nt gedit vms).', keys: ['Alt', 'F2'] },
-  { os: 'Linux', description: 'Alati kasuta seda, kui laua tagant lahkud.', keys: ['Super', 'L'] },
-  { os: 'Linux', description: 'Paigutab akna täpselt poolele ekraanile. Väga kasulik koodi ja brauseri kõrvuti hoidmiseks.', keys: ['Super', '←/→'] },
-  { os: 'Linux', description: 'Sulgeb aktiivse akna.', keys: ['Alt', 'F4'] },
-  { os: 'Linux', description: 'Lubab akent klaviatuuriga liigutada.', keys: ['Alt', 'F7'] },
-  { os: 'Linux', description: 'Lubab akna suurust klaviatuuriga muuta.', keys: ['Alt', 'F8'] },
-  { os: 'Linux', description: 'Avab akna kontekstimenüü (Minimeeri, Maksimeeri jne).', keys: ['Alt', 'Space'] }
-  { os: 'Linux', description: 'Liigub kursori rea algusesse (alternatiiv).', keys: ['Home'] },
-  { os: 'Linux', description: 'Liigub kursori rea lõppu (alternatiiv).', keys: ['End'] },
-  { os: 'Linux', description: 'Kustutab rea algusest kursorini (alternatiiv Ctrl+U-le).', keys: ['Ctrl', 'Shift', 'U'] },
-  { os: 'Linux', description: 'Kustutab rea lõpuni (alternatiiv Ctrl+K-le).', keys: ['Ctrl', 'Shift', 'K'] },
-  { os: 'Linux', description: 'Otsib ajaloost. Väga kasulik!', keys: ['Ctrl', 'R'] },
-  { os: 'Linux', description: 'Käivitab viimase käsu administraatori õigustes.', keys: ['sudo', '!!'] },
-  { os: 'Linux', description: 'Loob uue kausta failihalduris.', keys: ['Ctrl', 'Shift', 'N'] },
-  { os: 'Linux', description: 'Ava failihaldur/Windows Explorer.', keys: ['Super', 'E'] },
-  { os: 'Linux', description: 'Ava Seaded/Settings.', keys: ['Super', 'I'] },
-  { os: 'Linux', description: 'Ava Süsteemi monitor (Tegumihalduri alternatiiv).', keys: ['Ctrl', 'Shift', 'Esc'] },
-  { os: 'Linux', description: 'Liigub vahelehtede vahel (alternatiiv).', keys: ['Alt', 'Nool'] },
-  { os: 'Linux', description: 'Liigub eelmisesse kausta. Väga kasulik!', keys: ['Alt', 'Nool', 'Vasakule'] },
-  { os: 'Linux', description: 'Liigub järgmisesse kausta.', keys: ['Alt', 'Nool', 'Paremale'] }
+// Andmed CSV failist "Linuxi shortcutid - Sheet1 (1).csv"
 
+const terminalShortcuts = [
+  { os: 'Linux', description: 'Uus vaheleht (Tab)', keys: ['Ctrl', 'Shift', 'T'] },
+  { os: 'Linux', description: 'Sulge vaheleht', keys: ['Ctrl', 'Shift', 'W'] },
+  { os: 'Linux', description: 'Järgmine vaheleht', keys: ['Ctrl', 'Tab'] },
+  { os: 'Linux', description: 'Eelmine vaheleht', keys: ['Ctrl', 'Shift', 'Tab'] },
+  { os: 'Linux', description: 'Jaga aken pooleks (Split)', keys: ['Alt', 'Shift', 'D'] },
+  { os: 'Linux', description: 'Kopeeri (Terminalis)', keys: ['Ctrl', 'Shift', 'C'] },
+  { os: 'Linux', description: 'Kleebi (Terminalis)', keys: ['Ctrl', 'Shift', 'V'] },
+  { os: 'Linux', description: 'Otsi terminalist', keys: ['Ctrl', 'Shift', 'F'] },
+  { os: 'Linux', description: 'Katkesta protsess (SIGINT)', keys: ['Ctrl', 'C'] },
+  { os: 'Linux', description: 'Puhasta ekraan', keys: ['Ctrl', 'L'] },
+  { os: 'Linux', description: 'Ajaloo otsing (Reverse search)', keys: ['Ctrl', 'R'] },
+  { os: 'Linux', description: 'Peata protsess (Taustale)', keys: ['Ctrl', 'Z'] },
+  { os: 'Linux', description: 'Välju / EOF', keys: ['Ctrl', 'D'] },
+  { os: 'Linux', description: 'Automaatne lõpetamine', keys: ['Tab'] },
+  { os: 'Linux', description: 'Eelmine käsk ajaloost', keys: ['Nool Üles'] },
+  { os: 'Linux', description: 'Järgmine käsk ajaloost', keys: ['Nool Alla'] },
+  { os: 'Linux', description: 'Korda viimast käsku', keys: ['!!'] },
+  { os: 'Linux', description: 'Eelmise käsu viimane argument', keys: ['!$'] },
+  { os: 'Linux', description: 'Rea algusesse', keys: ['Ctrl', 'A'] },
+  { os: 'Linux', description: 'Rea lõppu', keys: ['Ctrl', 'E'] },
+  { os: 'Linux', description: 'Kustuta reast vasakule', keys: ['Ctrl', 'U'] },
+  { os: 'Linux', description: 'Kustuta reast paremale', keys: ['Ctrl', 'K'] }
 ];
+
+const desktopShortcuts = [
+  { os: 'Linux', description: 'Ava Terminal', keys: ['Ctrl', 'Alt', 'T'] },
+  { os: 'Linux', description: 'Tegevuste ülevaade', keys: ['Super'] },
+  { os: 'Linux', description: 'Vaheta rakendusi', keys: ['Alt', 'Tab'] },
+  { os: 'Linux', description: 'Vaheta virtuaalset töölauda', keys: ['Ctrl', 'Alt', 'Nooled'] },
+  { os: 'Linux', description: 'Ekraanitõmmis (Terve ekraan)', keys: ['PrtScn'] },
+  { os: 'Linux', description: 'Ekraanitõmmis (Valik)', keys: ['Shift', 'PrtScn'] },
+  { os: 'Linux', description: 'Käivita käsk (Run dialog)', keys: ['Alt', 'F2'] },
+  { os: 'Linux', description: 'Lukusta ekraan', keys: ['Super', 'L'] },
+  { os: 'Linux', description: 'Akna paigutus (Snap)', keys: ['Super', 'Nooled'] },
+  { os: 'Linux', description: 'Sulge aken', keys: ['Alt', 'F4'] },
+  { os: 'Linux', description: 'Akna liigutamine', keys: ['Alt', 'F7'] },
+  { os: 'Linux', description: 'Akna suuruse muutmine', keys: ['Alt', 'F8'] }
+];
+
+const browserShortcuts = [
+  { os: 'Linux', description: 'Uus vaheleht', keys: ['Ctrl', 'T'] },
+  { os: 'Linux', description: 'Sulge vaheleht', keys: ['Ctrl', 'W'] },
+  { os: 'Linux', description: 'Taasta suletud vaheleht', keys: ['Ctrl', 'Shift', 'T'] },
+  { os: 'Linux', description: 'Järgmine vaheleht', keys: ['Ctrl', 'Tab'] },
+  { os: 'Linux', description: 'Uus aken', keys: ['Ctrl', 'N'] },
+  { os: 'Linux', description: 'Incognito aken', keys: ['Ctrl', 'Shift', 'N'] },
+  { os: 'Linux', description: 'Lae leht uuesti', keys: ['F5'] },
+  { os: 'Linux', description: 'Arendaja tööriistad', keys: ['F12'] },
+  { os: 'Linux', description: 'Mine aadressiribale', keys: ['Ctrl', 'L'] },
+  { os: 'Linux', description: 'Otsi lehelt', keys: ['Ctrl', 'F'] },
+  { os: 'Linux', description: 'Ajalugu', keys: ['Ctrl', 'H'] },
+  { os: 'Linux', description: 'Allalaadimised', keys: ['Ctrl', 'J'] },
+  // --- LISATUD UUED OTSETEED ---
+  { os: 'Linux', description: 'Suurenda (Zoom in)', keys: ['Ctrl', '+'] },
+  { os: 'Linux', description: 'Vähenda (Zoom out)', keys: ['Ctrl', '-'] },
+  { os: 'Linux', description: 'Lähtesta suurus (Reset zoom)', keys: ['Ctrl', '0'] }
+];
+
+// Funktsioon, mis loob HTML sisu
+function renderShortcuts(arr, selector) {
+    const container = document.querySelector(selector);
+    if (!container) {
+        console.warn(`Elementi ${selector} ei leitud!`);
+        return;
+    }
+    container.innerHTML = '';
+    
+    arr.forEach(s => {
+        const li = document.createElement('li');
+        
+        // Klahvide konteiner
+        const keysSpan = document.createElement('span');
+        keysSpan.className = 'keys';
+        
+        // Loome iga klahvi jaoks eraldi <kbd> elemendi
+        const keysHtml = s.keys.map(k => `<kbd>${k}</kbd>`).join(' + ');
+        keysSpan.innerHTML = keysHtml;
+        
+        // Kirjelduse konteiner
+        const descSpan = document.createElement('span');
+        descSpan.className = 'desc';
+        descSpan.textContent = ' — ' + s.description;
+        
+        li.appendChild(keysSpan);
+        li.appendChild(descSpan);
+        container.appendChild(li);
+    });
+}
+
+// Käivitame renderdamise
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        renderShortcuts(terminalShortcuts, '#linux-terminal');
+        renderShortcuts(desktopShortcuts, '#linux-desktop');
+        renderShortcuts(browserShortcuts, '#linux-browser');
+    });
+} else {
+    renderShortcuts(terminalShortcuts, '#linux-terminal');
+    renderShortcuts(desktopShortcuts, '#linux-desktop');
+    renderShortcuts(browserShortcuts, '#linux-browser');
+}
