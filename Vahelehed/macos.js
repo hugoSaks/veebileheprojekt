@@ -178,16 +178,55 @@ function renderShortcuts(arr, selector) {
     });
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        renderShortcuts(macShortcuts, '#shortcuts');
-        renderShortcuts(powerShortcuts, '#power');
-        renderShortcuts(textEditingShortcuts, '#text-editing');
-        renderShortcuts(finderShortcuts, '#finder');
+// --- SEE OSA OLI PUUDU (KOPEERI SEE OMA FAILIST) ---
+function searchShortcuts(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    
+    document.querySelectorAll('.shortcut-card').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
     });
-} else {
+    document.querySelectorAll('section').forEach(section => {
+        const list = section.querySelector('ul');
+        // Ohutusabinõu: kui listi pole, liigu edasi
+        if (!list) return;
+
+        const visibleItems = list.querySelectorAll('li[style="display: flex;"]').length;
+        if (searchTerm === '') {
+             section.style.display = 'block';
+             return;
+        }
+        if (visibleItems === 0 && list.children.length > 0) {
+            section.style.display = 'none';
+        } else {
+            section.style.display = 'block';
+        }
+    });
+}
+// ---------------------------------------------------
+
+function init() {
+    // Veendu, et need ID-d (#shortcuts, #power jne) on sinu HTML-is olemas!
     renderShortcuts(macShortcuts, '#shortcuts');
     renderShortcuts(powerShortcuts, '#power');
     renderShortcuts(textEditingShortcuts, '#text-editing');
     renderShortcuts(finderShortcuts, '#finder');
+
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchShortcuts(e.target.value);
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
 }

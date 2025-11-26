@@ -112,11 +112,57 @@ function renderShortcuts(arr, selector) {
     });
 }
 
+// --- SEE ON UUS OTSINGU FUNKTSIOON ---
+function searchShortcuts(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    
+    // 1. Filtreeri üksikud kaardid
+    document.querySelectorAll('.shortcut-card').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    // 2. Peida tühjad sektsioonid
+    document.querySelectorAll('section').forEach(section => {
+        const list = section.querySelector('ul');
+        if (!list) return;
+
+        const visibleItems = list.querySelectorAll('li[style="display: flex;"]').length;
+        
+        // Kui otsing on tühi, näita kõike
+        if (searchTerm === '') {
+             section.style.display = 'block';
+             return;
+        }
+
+        // Kui sektsioonis pole ühtegi vastet, peida sektsioon
+        if (visibleItems === 0 && list.children.length > 0) {
+            section.style.display = 'none';
+        } else {
+            section.style.display = 'block';
+        }
+    });
+}
+
+// --- INIT FUNKTSIOON (Käivitab kõik) ---
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Joonista kõik nimekirjad
     renderShortcuts(linuxTabs, '#linux-tabs');
     renderShortcuts(linuxGeneral, '#linux-general');
     renderShortcuts(linuxEditing, '#linux-editing');
     renderShortcuts(linuxHistory, '#linux-history');
     renderShortcuts(linuxSystem, '#linux-system');
-    renderShortcuts(linuxBrowser, '#linux-browser'); // Veendu, et see ID on HTML-is olemas!
+    renderShortcuts(linuxBrowser, '#linux-browser');
+
+    // 2. Ühenda otsingukast
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchShortcuts(e.target.value);
+        });
+    }
 });
