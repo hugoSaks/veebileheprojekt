@@ -112,11 +112,43 @@ function renderShortcuts(arr, selector) {
     });
 }
 
+function searchShortcuts(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    document.querySelectorAll('.shortcut-card').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    document.querySelectorAll('section').forEach(section => {
+        const list = section.querySelector('ul');
+        if (!list) return;
+        const visibleItems = list.querySelectorAll('li[style="display: flex;"]').length;
+        if (searchTerm === '') {
+             section.style.display = 'block';
+             return;
+        }
+        if (visibleItems === 0 && list.children.length > 0) {
+            section.style.display = 'none';
+        } else {
+            section.style.display = 'block';
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     renderShortcuts(linuxTabs, '#linux-tabs');
     renderShortcuts(linuxGeneral, '#linux-general');
     renderShortcuts(linuxEditing, '#linux-editing');
     renderShortcuts(linuxHistory, '#linux-history');
     renderShortcuts(linuxSystem, '#linux-system');
-    renderShortcuts(linuxBrowser, '#linux-browser'); // Veendu, et see ID on HTML-is olemas!
+    renderShortcuts(linuxBrowser, '#linux-browser');
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchShortcuts(e.target.value);
+        });
+    }
 });
