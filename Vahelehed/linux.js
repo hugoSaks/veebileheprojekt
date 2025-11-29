@@ -157,7 +157,6 @@ function searchShortcuts(searchTerm) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Joonista kõik nimekirjad
     renderShortcuts(linuxTabs, '#linux-tabs');
     renderShortcuts(linuxGeneral, '#linux-general');
     renderShortcuts(linuxEditing, '#linux-editing');
