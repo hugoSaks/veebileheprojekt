@@ -1,4 +1,3 @@
-// 1. Defineerime kõikide otseteede andmebaasi (Windows + Mac + Linux)
 const allShortcuts = [
     // --- WINDOWS ---
     { os: 'Windows', description: 'Kopeeri', keys: ['Ctrl', 'C'] },
@@ -26,63 +25,43 @@ const allShortcuts = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-
     const searchInput = document.querySelector('.otsingu_sisend');
     const shortcutsContainer = document.getElementById('shortcuts-container');
     const osChoicesContainer = document.querySelector('.Valikud');
-
-    // Turvakontroll: kui elemente ei leita, ära tee midagi
     if (!searchInput || !shortcutsContainer || !osChoicesContainer) {
         return;
     }
-
-    // Funktsioon ühe otsetee kaardi loomiseks HTML-is
     function createShortcutElement(shortcut) {
         const item = document.createElement('div');
         item.className = 'shortcut-item';
-
         const description = document.createElement('span');
         description.className = 'shortcut-description';
-        // Kuvame rasvaselt OS-i nime ja siis kirjelduse
         description.innerHTML = `<strong>${shortcut.os}</strong>: ${shortcut.description}`;
-
         const keysContainer = document.createElement('div');
         keysContainer.className = 'shortcut-keys';
-        
         shortcut.keys.forEach((key, index) => {
             const kbd = document.createElement('kbd');
             kbd.textContent = key;
             keysContainer.appendChild(kbd);
-            // Lisa plussmärk, kui pole viimane klahv
             if (index < shortcut.keys.length - 1) {
                 keysContainer.append(' + ');
             }
         });
-
         item.appendChild(description);
         item.appendChild(keysContainer);
         return item;
     }
-
-    // OTSINGU KUULAJA
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase().trim();
-
         if (searchTerm.length > 0) {
-            // 1. Peida nupud (MacOS/Windows/Linux valikud)
             osChoicesContainer.classList.add('peidetud');
-            // 2. Näita tulemuste konteinerit
             shortcutsContainer.classList.remove('peidetud'); 
-            shortcutsContainer.innerHTML = ''; // Tühjenda eelmine otsing
-
-            // 3. Filtreeri andmed
+            shortcutsContainer.innerHTML = '';
             const filteredShortcuts = allShortcuts.filter(sc =>
                 sc.description.toLowerCase().includes(searchTerm) ||
                 sc.os.toLowerCase().includes(searchTerm) ||
                 sc.keys.join(' ').toLowerCase().includes(searchTerm)
             );
-
-            // 4. Kuva tulemused või teade "Ei leitud"
             if (filteredShortcuts.length > 0) {
                 filteredShortcuts.forEach(sc => {
                     shortcutsContainer.appendChild(createShortcutElement(sc));
@@ -91,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 shortcutsContainer.innerHTML = '<p style="color: white; text-align: center;">Tulemusi ei leitud.</p>';
             }
         } else {
-            // Kui otsingukast on tühi, too nupud tagasi
             osChoicesContainer.classList.remove('peidetud'); 
             shortcutsContainer.classList.add('peidetud'); 
         }
@@ -101,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleImage = document.querySelector('.tiitli_pilt');
     let clickCount = 0;
     let snowInterval = null;
-    
     if (titleImage) {
         titleImage.style.cursor = 'pointer';
         titleImage.addEventListener('click', () => {
@@ -115,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startSnowing() {
-        // Väike optimeerimine: ära tekita lund liiga tihti
         snowInterval = setInterval(createSnowflake, 200); 
     }
 
@@ -123,19 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
         snowflake.textContent = '❄';
-        snowflake.style.left = Math.random() * 100 + 'vw'; // Juhuslik asukoht horisontaalselt
-        
+        snowflake.style.left = Math.random() * 100 + 'vw';
         const size = Math.random() * 20 + 10;
         snowflake.style.fontSize = size + 'px';
-        
-        const duration = Math.random() * 5 + 3; // Kukkumise kiirus
+        const duration = Math.random() * 5 + 3;
         snowflake.style.animationDuration = duration + 's';
-        
         snowflake.style.opacity = Math.random() * 0.7 + 0.3;
-        
         document.body.appendChild(snowflake);
-
-        // Kustuta lumehelves, kui animatsioon läbi
         setTimeout(() => {
             snowflake.remove();
         }, duration * 1000);

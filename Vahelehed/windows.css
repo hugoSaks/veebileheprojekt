@@ -92,7 +92,7 @@ body {
     font-size: 2em; 
     color: #000000;
     cursor: pointer;
-    text-shadow: none; 
+    text-shadow: none;
 }
 
 .lemmikute_ikoon:hover {
@@ -137,7 +137,6 @@ body {
     text-align: center;
     padding: 30px 20px;
     margin-top: 50px;
-    
     color: #d6d6d6;
     font-size: 0.9em;
     border-top: 1px solid #494949;
@@ -174,6 +173,7 @@ body {
     display: flex; 
     align-items: center; 
     justify-content: space-between;
+    gap: 15px;
     padding: 15px 25px;
     transition: transform 0.2s;
 }
@@ -188,10 +188,11 @@ body {
     border-radius: 10px; 
     display: flex; 
     gap: 8px; 
+    flex-shrink: 0;
 }
 
 .key-wrapper kbd {
-    background-color: #333;
+    background-color: #333; 
     color: white; 
     padding: 5px 10px;
     border-radius: 6px; 
@@ -202,17 +203,19 @@ body {
 }
 
 .card-description {
+    flex-grow: 1;
     font-size: 1.1em;
     color: #000;
     font-weight: 500;
-    text-align: right; 
+    text-align: center; 
+    margin: 0 10px;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 30px;
     color: #000;
-    text-shadow: none;
+    text-shadow: none; 
 }
 
 h2 {
@@ -220,7 +223,7 @@ h2 {
     margin-bottom: 20px;
     margin-top: 40px;
     color: #000;
-    text-shadow: none;
+    text-shadow: none; 
 }
 canvas#matrix-bg {
     position: fixed;
@@ -230,4 +233,22 @@ canvas#matrix-bg {
     height: 100%;
     z-index: -1;
     pointer-events: none;
+}
+
+.favorite-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.favorite-icon:hover {
+    transform: scale(1.1);
+    color: #333;
+}
+
+.favorite-icon.active {
+    font-weight: 900;
+    color: #333;
 }

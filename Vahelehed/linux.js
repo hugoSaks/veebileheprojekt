@@ -86,30 +86,48 @@ const linuxBrowser = [
 function renderShortcuts(arr, selector) {
     const container = document.querySelector(selector);
     if (!container) return;
-    
     container.innerHTML = ''; 
-    
+    const favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
     arr.forEach(s => {
         const card = document.createElement('li');
         card.className = 'shortcut-card';
-
         const keyWrapper = document.createElement('div');
         keyWrapper.className = 'key-wrapper';
-
         s.keys.forEach(k => {
             const keyTag = document.createElement('kbd');
             keyTag.textContent = k;
             keyWrapper.appendChild(keyTag);
         });
-
         const descSpan = document.createElement('span');
         descSpan.className = 'card-description';
         descSpan.textContent = s.description;
-
+        const heart = document.createElement('i');
+        const isFav = favorites.some(fav => fav.description === s.description && fav.os === s.os);
+        heart.className = isFav ? 'fa-solid fa-heart favorite-icon active' : 'fa-regular fa-heart favorite-icon';
+        heart.onclick = function() {
+            toggleFavorite(s, heart);
+        };
         card.appendChild(keyWrapper);
         card.appendChild(descSpan);
+        card.appendChild(heart);
         container.appendChild(card);
     });
+}
+
+function toggleFavorite(shortcut, icon) {
+    let favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
+    const index = favorites.findIndex(fav => fav.description === shortcut.description && fav.os === shortcut.os);
+
+    if (index === -1) {
+        favorites.push(shortcut);
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid', 'active');
+    } else {
+        favorites.splice(index, 1);
+        icon.classList.remove('fa-solid', 'active');
+        icon.classList.add('fa-regular');
+    }
+    localStorage.setItem('shortcutFavorites', JSON.stringify(favorites));
 }
 
 function searchShortcuts(searchTerm) {

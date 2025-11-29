@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background: linear-gradient(to bottom, #ffffff 0%, #555555 100%);
+    min-height: 100vh;
+    background-attachment: scroll;
+}
+
+.pais {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%; 
+    background-color: transparent; 
+    color: #000000;
+    padding: 15px 20px;     
+    box-sizing: border-box;
+    border-bottom: none; 
+    box-shadow: none; 
+}
+
+.pais-sisu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px; 
+}
+
+.tiitli_konteiner {
+    text-align: center;
+    flex-grow: 1; 
+}
+
+.tiitli_pilt {
+    height: 40px; 
+    width: auto;
+    filter: none; 
+}
+
+.otsingu_konteiner {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 25px; 
+    padding: 6px 12px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ccc; 
+    flex-basis: 80px; 
+    justify-content: flex-start;
+    transition: all 0.2s ease-in-out; 
+}
+
+.otsingu_konteiner:hover {
+    border-color: #999; 
+}
+
+.otsingu_ikoon {
+    color: #555; 
+    margin-right: 10px; 
+    font-size: 1.1em; 
+}
+
+.otsingu_sisend {
+    border: none;
+    outline: none; 
+    padding: 0;
+    font-size: 1em;
+    width: 100%; 
+    color: #333; 
+    background-color: transparent;
+    font-family: Arial, sans-serif; 
+}
+
+.otsingu_sisend::placeholder {
+    color: #999; 
+    font-style: italic;
+}
+
+.otsingu_konteiner:focus-within {
+    border-color: #000;
+}
+
+.lemmikute_konteiner {
+    display: flex;
+    align-items: center;
+    flex-basis: 80px; 
+    justify-content: flex-end;
+}
+
+.lemmikute_ikoon {
+    font-size: 2em; 
+    color: #000000;
+    cursor: pointer;
+    text-shadow: none;
+}
+
+.lemmikute_ikoon:hover {
+    opacity: 0.6;
+}
+
+.Valikud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 10px 0; 
+    position: relative; 
+    z-index: 1; 
+    background-color: transparent; 
+    margin-top: 10px;
+    gap: 15px;
+}
+
+.Valikud a {
+    padding: 10px 30px; 
+    border-radius: 50px;
+    background-color: #ffffff;
+    border: none;
+    color: #333; 
+    font-weight: bold; 
+    text-decoration: none;
+    cursor: pointer; 
+    position: relative; 
+    z-index: 2; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.Valikud a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    background-color: #f8f8f8;
+    color: #000;
+}
+
+.krediidid {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    color: #d6d6d6;
+    font-size: 0.9em;
+    border-top: 1px solid #494949;
+}
+
+.krediidid hr {
+    border: 0;
+    height: 1px;
+    background: #494949;
+    margin: 0 auto 15px auto;
+    width: 80%;
+}
+
+.shortcut-list {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    max-width: 1000px; 
+    margin: 0 auto 30px auto; 
+    list-style: none; 
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .shortcut-list {
+        grid-template-columns: 1fr; 
+    }
+}
+
+.shortcut-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 25px;
+    transition: transform 0.2s;
+}
+
+.shortcut-card:hover {
+    transform: translateY(-2px);
+}
+
+.key-wrapper {
+    background-color: #dcdcdc; 
+    padding: 8px 15px; 
+    border-radius: 10px; 
+    display: flex; 
+    gap: 8px; 
+    flex-shrink: 0;
+}
+
+.key-wrapper kbd {
+    background-color: #333; 
+    color: white; 
+    padding: 5px 10px;
+    border-radius: 6px; 
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2); 
+}
+
+.card-description {
+    flex-grow: 1;
+    font-size: 1.1em;
+    color: #000;
+    font-weight: 500;
+    text-align: center; 
+    margin: 0 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000;
+    text-shadow: none; 
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: #000;
+    text-shadow: none; 
+}
+canvas#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.favorite-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.favorite-icon:hover {
+    transform: scale(1.1);
+    color: #333;
+}
+
+.favorite-icon.active {
+    font-weight: 900;
+    color: #333;
+}

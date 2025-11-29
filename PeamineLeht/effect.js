@@ -1,6 +1,4 @@
-// matrix.js sisu
 const canvas = document.getElementById('matrix-bg');
-
 if (canvas) {
     const ctx = canvas.getContext('2d');
     function resizeCanvas() {
