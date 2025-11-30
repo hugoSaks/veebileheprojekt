@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('favorites-container');
     const searchInput = document.getElementById('searchInput');
     if (favorites.length === 0) {
-        container.innerHTML = '<h3 style="grid-column: 1/-1; text-align: center; margin-top: 50px;">Sul pole veel lemmikuid salvestatud. 💔<br>Mine lisa mõni Windowsi, Maci või Linuxi lehelt!</h3>';
+        container.innerHTML = '<h3 style="grid-column: 1/-1; text-align: center; margin-top: 50px;">Sul pole veel lemmikuid salvestatud. <br>Mine lisa mõni Windowsi, Maci või Linuxi lehelt!</h3>';
     } else {
         renderFavorites(favorites, container);
     }
@@ -39,7 +39,7 @@ function renderFavorites(arr, container) {
         descSpan.className = 'card-description';
         descSpan.innerHTML = `<b>(${s.os})</b> ${s.description}`;
         const heart = document.createElement('i');
-        heart.className = 'fa-solid fa-heart favorite-icon active'; 
+        heart.className = 'fa-solid fa-heart favorite-icon active';
         heart.onclick = () => {
             removeFavorite(s, card, container);
         };
@@ -52,7 +52,7 @@ function renderFavorites(arr, container) {
 
 function removeFavorite(shortcut, cardElement, container) {
     let favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
-    favorites = favorites.filter(fav => 
+    favorites = favorites.filter(fav =>
         !(fav.description === shortcut.description && fav.os === shortcut.os)
     );
     localStorage.setItem('shortcutFavorites', JSON.stringify(favorites));
