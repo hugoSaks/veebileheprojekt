@@ -24,6 +24,7 @@ const allShortcuts = [
     { os: 'Linux', description: 'Puhasta terminal', keys: ['Ctrl', 'L'] }
 ];
 
+// Leiame vajalikud elemendid lehelt, et neid hiljem muuta
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.otsingu_sisend');
     const shortcutsContainer = document.getElementById('shortcuts-container');
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!searchInput || !shortcutsContainer || !osChoicesContainer) {
         return;
     }
+    //Loob HTML elemendi ühe konkreetse otsetee kuvamiseks otsingutulemustes.
     function createShortcutElement(shortcut) {
         const item = document.createElement('div');
         item.className = 'shortcut-item';
@@ -90,11 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
+    // Käivitab lumesaju tsükli
     function startSnowing() {
         snowInterval = setInterval(createSnowflake, 200); 
     }
-
+// Loob ühe lumehelbe ja animeerib selle
     function createSnowflake() {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
