@@ -83,8 +83,7 @@ const linuxBrowser = [
   { os: 'Linux', description: 'Allalaadimised', keys: ['Ctrl', 'J'] }
 ];
 
-//Genereerib andmete põhjal ning joonistab kastid ekraanile
-function renderShortcuts(arr, selector) {
+// 1. Renderdamine: Genereerib HTML-i (kaardid) etteantud andmemassiivi ja sihtkoha ID põhjalfunction renderShortcuts(arr, selector) {
     const container = document.querySelector(selector);
     if (!container) return;
     container.innerHTML = ''; 
@@ -115,8 +114,7 @@ function renderShortcuts(arr, selector) {
     });
 }
 
-//Haldab lemmikute lisamist
-function toggleFavorite(shortcut, icon) {
+// 2. Lemmikud: Haldab lemmikute lisamist ja eemaldamist localStorage-is ning uuendab südame ikoonifunction.
     let favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
     const index = favorites.findIndex(fav => fav.description === shortcut.description && fav.os === shortcut.os);
 
@@ -158,6 +156,7 @@ function searchShortcuts(searchTerm) {
     });
 }
 
+// 3. Otsing: Filtreerib kaarte vastavalt otsingusõnale ja peidab tühjaks jäänud sektsioonid
 document.addEventListener('DOMContentLoaded', () => {
     renderShortcuts(linuxTabs, '#linux-tabs');
     renderShortcuts(linuxGeneral, '#linux-general');
