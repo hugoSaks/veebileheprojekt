@@ -1,3 +1,4 @@
+//Andmed jaotatud teemade kaupa
 const macShortcuts = [
     { os: 'MacOS', description: 'Valib kõik ja kopeerib üksuse lõikelauale', keys: ['Cmd', 'A'] },
     { os: 'MacOS', description: 'Leia: Avab otsinguakna või otsib dokumentidest', keys: ['Cmd', 'F'] },
@@ -155,6 +156,8 @@ const finderShortcuts = [
     { os: 'MacOS', description: 'Kopeerib lohistatud üksuse', keys: ['Option', 'Drag'] },
     { os: 'MacOS', description: 'Loob lohistatud üksusest otsetee (alias)', keys: ['Cmd', 'Option', 'Drag'] }
 ];
+
+//Renderdamine: Genereerib HTML-i (kaardid) etteantud andmemassiivi ja sihtkoha ID põhjalfunction renderShortcuts(arr, selector) {
 function renderShortcuts(arr, selector) {
     const container = document.querySelector(selector);
     if (!container) return;
@@ -186,6 +189,7 @@ function renderShortcuts(arr, selector) {
     });
 }
 
+//Lemmikud: Haldab lemmikute lisamist ja eemaldamist localStorage-is ning uuendab südame ikoonifunction.
 function toggleFavorite(shortcut, icon) {
     let favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
     const index = favorites.findIndex(fav => fav.description === shortcut.description && fav.os === shortcut.os);
@@ -202,7 +206,7 @@ function toggleFavorite(shortcut, icon) {
     localStorage.setItem('shortcutFavorites', JSON.stringify(favorites));
 }
 
-// --- SEE OSA OLI PUUDU (KOPEERI SEE OMA FAILIST) ---
+//Filtreerib kaarte vastavalt kasutaja sisestatud tekstile ja peidab tühjaks jäänud sektsioonid.
 function searchShortcuts(searchTerm) {
     searchTerm = searchTerm.toLowerCase();
     
@@ -216,7 +220,6 @@ function searchShortcuts(searchTerm) {
     });
     document.querySelectorAll('section').forEach(section => {
         const list = section.querySelector('ul');
-        // Ohutusabinõu: kui listi pole, liigu edasi
         if (!list) return;
 
         const visibleItems = list.querySelectorAll('li[style="display: flex;"]').length;
@@ -231,10 +234,8 @@ function searchShortcuts(searchTerm) {
         }
     });
 }
-// ---------------------------------------------------
-
+//Otsing: Filtreerib kaarte vastavalt otsingusõnale ja peidab tühjaks jäänud sektsioonid
 function init() {
-    // Veendu, et need ID-d (#shortcuts, #power jne) on sinu HTML-is olemas!
     renderShortcuts(macShortcuts, '#shortcuts');
     renderShortcuts(powerShortcuts, '#power');
     renderShortcuts(textEditingShortcuts, '#text-editing');
