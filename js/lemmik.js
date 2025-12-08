@@ -1,3 +1,4 @@
+// Laeb andmed mälust, otsustab kas näidata tühja lehe teadet või kaarte, ja paneb tööle otsingu.
 document.addEventListener('DOMContentLoaded', () => {
     const favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
     const container = document.getElementById('favorites-container');
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Ehitab andmemassiivi põhjal HTML elemendid ja lisab need ekraanile.
 function renderFavorites(arr, container) {
     container.innerHTML = '';
     arr.forEach(s => {
@@ -50,6 +52,7 @@ function renderFavorites(arr, container) {
     });
 }
 
+// Eemaldab otsetee nii brauseri mälust kui ka visuaalselt lehelt.
 function removeFavorite(shortcut, cardElement, container) {
     let favorites = JSON.parse(localStorage.getItem('shortcutFavorites')) || [];
     favorites = favorites.filter(fav =>
